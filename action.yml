@@ -20,6 +20,10 @@ inputs:
     description: "The SHA of the latest commit (automatically set)"
     required: true
     default: "${{ github.sha }}"
+  BASE_SHA:
+    description: "The SHA of the base branch in pull requests (automatically set)"
+    required: true
+    default: "${{ github.event.pull_request.base.sha }}"
   TOKEN:
     description: "The GitHub access token to allow us to retrieve, create and update issues (automatically set)"
     required: false
