@@ -12,10 +12,6 @@ import hashlib
 from enum import Enum
 import itertools
 import operator
-import logging
-
-# TODO remove logs
-logging.basicConfig(level=logging.DEBUG)
 
 class LineStatus(Enum):
     """Represents the status of a line in a diff file."""
@@ -61,21 +57,17 @@ class GitHubClient(object):
         auto_p = os.getenv('INPUT_AUTO_P', 'true') == 'true'
         self.line_break = '\n\n' if auto_p else '\n'
 
-        logging.debug('Repo %', self.repo)
-        logging.debug('Before final %', self.before)
-
         # Retrieve the existing repo issues now so we can easily check them later.
         self._get_existing_issues()
 
     def get_last_diff(self):
         """Get the last diff based on the SHA of the last two commits."""
         if not self.before or self.before.startswith('000000'):
+            # Last commit SHA is empty which means this is the first commit of the branch
             diff_url = f'{self.repos_url}{self.repo}/commits/{self.sha}'
         else:    
             diff_url = f'{self.repos_url}{self.repo}/compare/{self.before}...{self.sha}'
         
-        logging.debug('Diff URL %', diff_url)
-
         diff_headers = {
             'Accept': 'application/vnd.github.v3.diff',
             'Authorization': f'token {self.token}'
