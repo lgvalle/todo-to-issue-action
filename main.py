@@ -52,6 +52,8 @@ class GitHubClient(object):
     def __init__(self):
         self.repo = os.getenv('INPUT_REPO')
         self.before = os.getenv('INPUT_BEFORE')
+        if (self.before.startswith('000000')):
+            self.before = os.getenv('INPUT_BASE_SHA')
         self.sha = os.getenv('INPUT_SHA')
         self.token = os.getenv('INPUT_TOKEN')
         self.issues_url = f'{self.repos_url}{self.repo}/issues'
