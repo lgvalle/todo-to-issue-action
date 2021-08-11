@@ -14,6 +14,7 @@ import itertools
 import operator
 import logging
 
+# TODO remove logs
 logging.basicConfig(level=logging.DEBUG)
 
 class LineStatus(Enum):
