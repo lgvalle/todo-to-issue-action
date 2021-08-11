@@ -56,7 +56,6 @@ class GitHubClient(object):
         }
         auto_p = os.getenv('INPUT_AUTO_P', 'true') == 'true'
         self.line_break = '\n\n' if auto_p else '\n'
-
         # Retrieve the existing repo issues now so we can easily check them later.
         self._get_existing_issues()
 
@@ -67,13 +66,11 @@ class GitHubClient(object):
             diff_url = f'{self.repos_url}{self.repo}/commits/{self.sha}'
         else:    
             diff_url = f'{self.repos_url}{self.repo}/compare/{self.before}...{self.sha}'
-        
         diff_headers = {
             'Accept': 'application/vnd.github.v3.diff',
             'Authorization': f'token {self.token}'
         }
         diff_request = requests.get(url=diff_url, headers=diff_headers)
-        
         if diff_request.status_code == 200:
             return diff_request.text
         raise Exception('Could not retrieve diff. Operation will abort.')
