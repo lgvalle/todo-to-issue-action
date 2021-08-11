@@ -12,7 +12,9 @@ import hashlib
 from enum import Enum
 import itertools
 import operator
+import logging
 
+logging.basicConfig(level=logging.DEBUG)
 
 class LineStatus(Enum):
     """Represents the status of a line in a diff file."""
@@ -58,6 +60,10 @@ class GitHubClient(object):
         }
         auto_p = os.getenv('INPUT_AUTO_P', 'true') == 'true'
         self.line_break = '\n\n' if auto_p else '\n'
+
+        logging.debug('Repo %', self.repo)
+        logging.debug('Before %', self.before)
+
         # Retrieve the existing repo issues now so we can easily check them later.
         self._get_existing_issues()
 
@@ -69,6 +75,7 @@ class GitHubClient(object):
             'Authorization': f'token {self.token}'
         }
         diff_request = requests.get(url=diff_url, headers=diff_headers)
+        logging.debug('Diff URL %', diff_url)
         if diff_request.status_code == 200:
             return diff_request.text
         raise Exception('Could not retrieve diff. Operation will abort.')
