@@ -52,7 +52,9 @@ class GitHubClient(object):
     def __init__(self):
         self.repo = os.getenv('INPUT_REPO')
         self.before = os.getenv('INPUT_BEFORE')
-        if (self.before.startswith('000000')):
+        logging.debug('Before initial %', self.before)
+        # TODO remove hardcoded
+        if not self.before or self.before.startswith('000000'):
             self.before = os.getenv('INPUT_BASE_SHA')
         self.sha = os.getenv('INPUT_SHA')
         self.token = os.getenv('INPUT_TOKEN')
@@ -65,7 +67,7 @@ class GitHubClient(object):
         self.line_break = '\n\n' if auto_p else '\n'
 
         logging.debug('Repo %', self.repo)
-        logging.debug('Before %', self.before)
+        logging.debug('Before final %', self.before)
 
         # Retrieve the existing repo issues now so we can easily check them later.
         self._get_existing_issues()
