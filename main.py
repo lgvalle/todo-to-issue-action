@@ -42,7 +42,7 @@ class Issue(object):
         self.markdown_language = markdown_language
         self.status = status
 
-# TODO remove logs
+# TODO remove hardcoded
 class GitHubClient(object):
     """Basic client for getting the last diff and creating/closing issues."""
     existing_issues = []
@@ -52,10 +52,6 @@ class GitHubClient(object):
     def __init__(self):
         self.repo = os.getenv('INPUT_REPO')
         self.before = os.getenv('INPUT_BEFORE')
-        logging.debug('Before initial %', self.before)
-        # TODO remove hardcoded
-        if not self.before or self.before.startswith('000000'):
-            self.before = os.getenv('INPUT_BASE_SHA')
         self.sha = os.getenv('INPUT_SHA')
         self.token = os.getenv('INPUT_TOKEN')
         self.issues_url = f'{self.repos_url}{self.repo}/issues'
@@ -74,13 +70,19 @@ class GitHubClient(object):
 
     def get_last_diff(self):
         """Get the last diff based on the SHA of the last two commits."""
-        diff_url = f'{self.repos_url}{self.repo}/compare/{self.before}...{self.sha}'
+        if not self.before or self.before.startswith('000000'):
+            diff_url = f'{self.repos_url}{self.repo}/commits/{self.sha}'
+        else:    
+            diff_url = f'{self.repos_url}{self.repo}/compare/{self.before}...{self.sha}'
+        
+        logging.debug('Diff URL %', diff_url)
+
         diff_headers = {
             'Accept': 'application/vnd.github.v3.diff',
             'Authorization': f'token {self.token}'
         }
         diff_request = requests.get(url=diff_url, headers=diff_headers)
-        logging.debug('Diff URL %', diff_url)
+        
         if diff_request.status_code == 200:
             return diff_request.text
         raise Exception('Could not retrieve diff. Operation will abort.')
