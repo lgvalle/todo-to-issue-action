@@ -13,6 +13,7 @@ from enum import Enum
 import itertools
 import operator
 
+
 class LineStatus(Enum):
     """Represents the status of a line in a diff file."""
     ADDED = 0
@@ -37,6 +38,7 @@ class Issue(object):
         self.start_line = start_line
         self.markdown_language = markdown_language
         self.status = status
+
 
 class GitHubClient(object):
     """Basic client for getting the last diff and creating/closing issues."""
