@@ -42,7 +42,6 @@ class Issue(object):
         self.markdown_language = markdown_language
         self.status = status
 
-# TODO remove hardcoded
 class GitHubClient(object):
     """Basic client for getting the last diff and creating/closing issues."""
     existing_issues = []
