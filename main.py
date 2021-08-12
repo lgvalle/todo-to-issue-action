@@ -13,7 +13,7 @@ from enum import Enum
 import itertools
 import operator
 import logging
-
+# TODO remove logging
 logging.basicConfig(level=logging.DEBUG)
 
 class LineStatus(Enum):
