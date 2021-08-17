@@ -50,7 +50,6 @@ class GitHubClient(object):
 
     def __init__(self):
         self.repo = os.getenv('INPUT_REPO')
-        self.before = os.getenv('INPUT_BEFORE')
         self.sha = os.getenv('INPUT_SHA')
         self.token = os.getenv('INPUT_TOKEN')
         self.issues_url = f'{self.repos_url}{self.repo}/issues'
@@ -62,18 +61,13 @@ class GitHubClient(object):
         self.line_break = '\n\n' if auto_p else '\n'
 
         logging.debug('Repo %', self.repo)
-        logging.debug('Before %', self.before)
-
+        
         # Retrieve the existing repo issues now so we can easily check them later.
         self._get_existing_issues()
 
     def get_last_diff(self):
-        """Get the last diff based on the SHA of the last two commits."""
-        if not self.before or self.before.startswith('000000'):
-            # Last commit SHA is empty which means this is the first commit of the branch
-            diff_url = f'{self.repos_url}{self.repo}/commits/{self.sha}'
-        else:    
-            diff_url = f'{self.repos_url}{self.repo}/compare/{self.before}...{self.sha}'
+        """Get the last commit diff."""
+        diff_url = f'{self.repos_url}{self.repo}/commits/{self.sha}'
         diff_headers = {
             'Accept': 'application/vnd.github.v3.diff',
             'Authorization': f'token {self.token}'
