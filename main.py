@@ -20,7 +20,7 @@ class LineStatus(Enum):
     DELETED = 1
     UNCHANGED = 2
 
-
+# Another comment
 class Issue(object):
     """Basic Issue model for collecting the necessary info to send to GitHub."""
 
