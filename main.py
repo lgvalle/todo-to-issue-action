@@ -13,7 +13,6 @@ from enum import Enum
 import itertools
 import operator
 import logging
-# TODO remove logging
 logging.basicConfig(level=logging.DEBUG)
 
 class LineStatus(Enum):
@@ -21,7 +20,6 @@ class LineStatus(Enum):
     ADDED = 0
     DELETED = 1
     UNCHANGED = 2
-# TODO New TODO in first commit
 
 class Issue(object):
     """Basic Issue model for collecting the necessary info to send to GitHub."""
