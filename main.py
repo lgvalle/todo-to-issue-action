@@ -13,14 +13,12 @@ from enum import Enum
 import itertools
 import operator
 
-# TODO comment
 class LineStatus(Enum):
     """Represents the status of a line in a diff file."""
     ADDED = 0
     DELETED = 1
     UNCHANGED = 2
 
-# Another comment
 class Issue(object):
     """Basic Issue model for collecting the necessary info to send to GitHub."""
 
