@@ -46,6 +46,7 @@ class GitHubClient(object):
     repos_url = f'{base_url}repos/'
 
     def __init__(self):
+        print(f'Init....')
         self.repo = os.getenv('INPUT_REPO')
         self.sha = os.getenv('INPUT_SHA')
         self.token = os.getenv('INPUT_TOKEN')
