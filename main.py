@@ -48,6 +48,7 @@ class GitHubClient(object):
     def __init__(self):
         print(f'Init....')
         self.repo = os.getenv('INPUT_REPO')
+        self.before = os.getenv('INPUT_BEFORE')
         self.sha = os.getenv('INPUT_SHA')
         self.token = os.getenv('INPUT_TOKEN')
         self.issues_url = f'{self.repos_url}{self.repo}/issues'
@@ -63,11 +64,13 @@ class GitHubClient(object):
     def get_last_diff(self):
         """Get the last commit diff."""
         diff_url = f'{self.repos_url}{self.repo}/commits/{self.sha}'
+        
         diff_headers = {
             'Accept': 'application/vnd.github.v3.diff',
             'Authorization': f'token {self.token}'
         }
         print(f'Diff url {diff_url}')
+        print(f'Before sha {self.before}')
         diff_request = requests.get(url=diff_url, headers=diff_headers)
         if diff_request.status_code == 200:
             return diff_request.text
