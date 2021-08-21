@@ -66,6 +66,7 @@ class GitHubClient(object):
             'Accept': 'application/vnd.github.v3.diff',
             'Authorization': f'token {self.token}'
         }
+        logging.debug('URL %', diff_url)
         diff_request = requests.get(url=diff_url, headers=diff_headers)
         if diff_request.status_code == 200:
             return diff_request.text
@@ -628,4 +629,3 @@ if __name__ == "__main__":
                 print('Issue could not be closed')
         # Stagger the requests to be on the safe side.
         sleep(1)
-        
