@@ -12,8 +12,6 @@ import hashlib
 from enum import Enum
 import itertools
 import operator
-import logging
-logging.basicConfig(level=logging.DEBUG)
 
 #TODO First TODO
 class LineStatus(Enum):
@@ -68,7 +66,6 @@ class GitHubClient(object):
             'Accept': 'application/vnd.github.v3.diff',
             'Authorization': f'token {self.token}'
         }
-        logging.debug('URL %', diff_url)
         print(f'Diff url {diff_url}')
         diff_request = requests.get(url=diff_url, headers=diff_headers)
         if diff_request.status_code == 200:
