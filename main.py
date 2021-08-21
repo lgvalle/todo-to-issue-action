@@ -13,6 +13,7 @@ from enum import Enum
 import itertools
 import operator
 
+#TODO First todo
 class LineStatus(Enum):
     """Represents the status of a line in a diff file."""
     ADDED = 0
