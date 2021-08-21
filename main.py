@@ -12,8 +12,9 @@ import hashlib
 from enum import Enum
 import itertools
 import operator
+import logging
+logging.basicConfig(level=logging.DEBUG)
 
-#TODO First todo
 class LineStatus(Enum):
     """Represents the status of a line in a diff file."""
     ADDED = 0
@@ -38,7 +39,6 @@ class Issue(object):
         self.markdown_language = markdown_language
         self.status = status
 
-#TODO Second todo
 class GitHubClient(object):
     """Basic client for getting the last diff and creating/closing issues."""
     existing_issues = []
@@ -628,4 +628,4 @@ if __name__ == "__main__":
                 print('Issue could not be closed')
         # Stagger the requests to be on the safe side.
         sleep(1)
-#TODO third todo
+        
