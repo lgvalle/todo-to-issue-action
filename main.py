@@ -15,6 +15,7 @@ import operator
 import logging
 logging.basicConfig(level=logging.DEBUG)
 
+#TODO First TODO
 class LineStatus(Enum):
     """Represents the status of a line in a diff file."""
     ADDED = 0
