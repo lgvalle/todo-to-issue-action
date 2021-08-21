@@ -161,6 +161,7 @@ class GitHubClient(object):
 
         return new_issue_request.status_code
 
+#TODO Third TODO
     def close_issue(self, issue):
         """Check to see if this issue can be found on GitHub and if so close it."""
         matched = 0
