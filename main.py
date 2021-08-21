@@ -13,7 +13,6 @@ from enum import Enum
 import itertools
 import operator
 
-#TODO First TODO
 class LineStatus(Enum):
     """Represents the status of a line in a diff file."""
     ADDED = 0
@@ -38,7 +37,6 @@ class Issue(object):
         self.markdown_language = markdown_language
         self.status = status
 
-#TODO Second TODO
 class GitHubClient(object):
     """Basic client for getting the last diff and creating/closing issues."""
     existing_issues = []
@@ -163,7 +161,6 @@ class GitHubClient(object):
 
         return new_issue_request.status_code
 
-#TODO Third TODO
     def close_issue(self, issue):
         """Check to see if this issue can be found on GitHub and if so close it."""
         matched = 0
