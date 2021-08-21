@@ -74,7 +74,7 @@ class GitHubClient(object):
         if diff_request.status_code == 200:
             return diff_request.text
         raise Exception('Could not retrieve diff. Operation will abort.')
-
+#TODO second todo
     def _get_existing_issues(self, page=1):
         """Populate the existing issues list."""
         params = {
