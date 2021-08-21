@@ -69,6 +69,7 @@ class GitHubClient(object):
             'Authorization': f'token {self.token}'
         }
         logging.debug('URL %', diff_url)
+        print(f'Diff url {diff_url}')
         diff_request = requests.get(url=diff_url, headers=diff_headers)
         if diff_request.status_code == 200:
             return diff_request.text
