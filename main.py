@@ -233,7 +233,7 @@ class GitHubClient(object):
             else:
                 print('An error occurred, skipping')
                 continue
-#TODO a third comment
+
             # Use the project ID and column name to get the column ID.
             columns_url = f'{self.base_url}projects/{project_id}/columns'
             columns_request = requests.get(url=columns_url, headers=projects_headers)
