@@ -105,7 +105,7 @@ class GitHubClient(object):
                 + '```' + issue.markdown_language + '\n'
                 + issue.hunk + '\n'
                 + '```')
-
+# TODO - a second comment
         # Check if the current issue already exists - if so, skip it.
         # The below is a simple and imperfect check.
         issue_id = hashlib.sha1(body.encode('utf-8')).hexdigest()
