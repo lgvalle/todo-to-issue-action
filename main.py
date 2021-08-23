@@ -185,7 +185,7 @@ class GitHubClient(object):
                                                  data=json.dumps(body))
             return update_issue_request.status_code
         return None
-
+#TODO a second comment
     def add_issue_to_projects(self, issue_id, projects, projects_type):
         """Attempt to add this issue to the specified user or organisation projects."""
         projects_secret = os.getenv('INPUT_PROJECTS_SECRET', None)
