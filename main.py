@@ -13,7 +13,6 @@ from enum import Enum
 import itertools
 import operator
 
-#TODO first todo
 class LineStatus(Enum):
     """Represents the status of a line in a diff file."""
     ADDED = 0
@@ -78,7 +77,6 @@ class GitHubClient(object):
         if diff_request.status_code == 200:
             return diff_request.text
         raise Exception('Could not retrieve diff. Operation will abort.')
-#TODO second todo
     def _get_existing_issues(self, page=1):
         """Populate the existing issues list."""
         params = {
@@ -191,7 +189,7 @@ class GitHubClient(object):
                                                  data=json.dumps(body))
             return update_issue_request.status_code
         return None
-#TODO third todo
+
     def add_issue_to_projects(self, issue_id, projects, projects_type):
         """Attempt to add this issue to the specified user or organisation projects."""
         projects_secret = os.getenv('INPUT_PROJECTS_SECRET', None)
