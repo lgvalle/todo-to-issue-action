@@ -18,7 +18,7 @@ class LineStatus(Enum):
     ADDED = 0
     DELETED = 1
     UNCHANGED = 2
-# TODO - a first comment
+
 class Issue(object):
     """Basic Issue model for collecting the necessary info to send to GitHub."""
 
@@ -77,6 +77,7 @@ class GitHubClient(object):
         if diff_request.status_code == 200:
             return diff_request.text
         raise Exception('Could not retrieve diff. Operation will abort.')
+
     def _get_existing_issues(self, page=1):
         """Populate the existing issues list."""
         params = {
@@ -105,7 +106,7 @@ class GitHubClient(object):
                 + '```' + issue.markdown_language + '\n'
                 + issue.hunk + '\n'
                 + '```')
-# TODO - a second comment
+
         # Check if the current issue already exists - if so, skip it.
         # The below is a simple and imperfect check.
         issue_id = hashlib.sha1(body.encode('utf-8')).hexdigest()
@@ -163,7 +164,7 @@ class GitHubClient(object):
                 self.add_issue_to_projects(issue_id, issue.org_projects, 'org')
 
         return new_issue_request.status_code
-# TODO - a third comment
+
     def close_issue(self, issue):
         """Check to see if this issue can be found on GitHub and if so close it."""
         matched = 0
