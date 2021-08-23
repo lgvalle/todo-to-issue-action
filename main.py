@@ -36,7 +36,7 @@ class Issue(object):
         self.start_line = start_line
         self.markdown_language = markdown_language
         self.status = status
-
+#TODO a first comment
 class GitHubClient(object):
     """Basic client for getting the last diff and creating/closing issues."""
     existing_issues = []
