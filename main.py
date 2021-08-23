@@ -48,6 +48,7 @@ class GitHubClient(object):
         self.repo = os.getenv('INPUT_REPO')
         self.before = os.getenv('INPUT_BEFORE')
         self.sha = os.getenv('INPUT_SHA')
+        self.commits = os.getenv('INPUT_COMMITS')
         self.token = os.getenv('INPUT_TOKEN')
         self.issues_url = f'{self.repos_url}{self.repo}/issues'
         self.issue_headers = {
@@ -68,6 +69,7 @@ class GitHubClient(object):
         }
         print(f'Diff url {diff_url}')
         print(f'Before sha {self.before}')
+        print(f'Commits {self.commits}')
         diff_request = requests.get(url=diff_url, headers=diff_headers)
         if diff_request.status_code == 200:
             return diff_request.text
