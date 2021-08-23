@@ -18,7 +18,7 @@ class LineStatus(Enum):
     ADDED = 0
     DELETED = 1
     UNCHANGED = 2
-
+# TODO - a first comment
 class Issue(object):
     """Basic Issue model for collecting the necessary info to send to GitHub."""
 
