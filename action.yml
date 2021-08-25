@@ -19,7 +19,7 @@ inputs:
   COMMITS:
     description: "An array of commit objects describing the pushed commits"
     required: true
-    default: "${{ github.event.commits }}"            
+    default: "${{ toJSON(github.event.commits) }}"
   SHA:
     description: "The SHA of the latest commit (automatically set)"
     required: true
