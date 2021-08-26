@@ -109,7 +109,7 @@ class GitHubClient(object):
             links = list_issues_request.links
             if 'next' in links:
                 self._get_existing_issues(page + 1)
-
+   # TODO remove debug log 2
     def create_issue(self, issue):
         """Create a dict containing the issue details and send it to GitHub."""
         title = issue.title
