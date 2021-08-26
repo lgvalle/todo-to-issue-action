@@ -180,7 +180,7 @@ class GitHubClient(object):
                 self.add_issue_to_projects(issue_id, issue.org_projects, 'org')
 
         return new_issue_request.status_code
-# TODO 2
+        
     def close_issue(self, issue):
         """Check to see if this issue can be found on GitHub and if so close it."""
         matched = 0
