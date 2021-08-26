@@ -47,7 +47,6 @@ class GitHubClient(object):
     repos_url = f'{base_url}repos/'
 
     def __init__(self):
-        print(f'Init....')
         self.repo = os.getenv('INPUT_REPO')
         self.before = os.getenv('INPUT_BEFORE')
         self.sha = os.getenv('INPUT_SHA')
@@ -83,7 +82,6 @@ class GitHubClient(object):
             'Accept': 'application/vnd.github.v3.diff',
             'Authorization': f'token {self.token}'
         }
-        
         diff_request = requests.get(url=diff_url, headers=diff_headers)
         if diff_request.status_code == 200:
             return diff_request.text
@@ -103,7 +101,7 @@ class GitHubClient(object):
             links = list_issues_request.links
             if 'next' in links:
                 self._get_existing_issues(page + 1)
-   
+
     def create_issue(self, issue):
         """Create a dict containing the issue details and send it to GitHub."""
         title = issue.title
