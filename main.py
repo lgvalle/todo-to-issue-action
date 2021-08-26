@@ -282,7 +282,7 @@ class GitHubClient(object):
             else:
                 print('Issue card could not be added to project')
 
-
+# TODO 4
 class TodoParser(object):
     """Parser for extracting information from a given diff file."""
     FILE_HUNK_PATTERN = r'(?<=diff)(.*?)(?=diff\s--git\s)'
