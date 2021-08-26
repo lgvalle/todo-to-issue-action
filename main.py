@@ -82,6 +82,7 @@ class GitHubClient(object):
             return diff_request.text
         raise Exception('Could not retrieve diff. Operation will abort.')
 
+# TODO 1
     def _get_existing_issues(self, page=1):
         """Populate the existing issues list."""
         params = {
