@@ -76,7 +76,7 @@ class GitHubClient(object):
         print(f'Diff url {diff_url}')
         print(f'Before sha {self.before}')
         print(f'Commits unsorted {self.commits}')
-        print(f'Commits sorted {self.commits.sort(key=self.get_timestamp)}')
+        print(f'Commits sorted {sorted(self.commits, key=self.get_timestamp)}')
         diff_request = requests.get(url=diff_url, headers=diff_headers)
         if diff_request.status_code == 200:
             return diff_request.text
