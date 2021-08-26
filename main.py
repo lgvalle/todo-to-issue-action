@@ -78,14 +78,9 @@ class GitHubClient(object):
             diff_url = f'{self.repos_url}{self.repo}/commits/{self.sha}'
         else: 
             # There are several commits: compare with the oldest one
-            print("Case 3")
             oldest = sorted(self.commits, key=self.get_timestamp, reverse=True)[0]['id']
-            print(f'oldest sha {oldest}')
             diff_url = f'{self.repos_url}{self.repo}/compare/{oldest}...{self.sha}'    
         
-        oldest = sorted(self.commits, key=self.get_timestamp, reverse=True)[0]['id']
-        print(f'oldest sha {oldest}')
-
         diff_headers = {
             'Accept': 'application/vnd.github.v3.diff',
             'Authorization': f'token {self.token}'
