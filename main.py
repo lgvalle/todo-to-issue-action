@@ -78,7 +78,9 @@ class GitHubClient(object):
             diff_url = f'{self.repos_url}{self.repo}/commits/{self.sha}'
         else: 
             # There are several commits: compare with the oldest one
-            oldest = sorted(self.commits, key=self.get_timestamp, reverse=True)[0]['id']
+            print("Case 3")
+            print(f'Case 3 commits {self.commits}')
+            oldest = sorted(self.commits, key=self.get_timestamp)[0]['id']
             diff_url = f'{self.repos_url}{self.repo}/compare/{oldest}...{self.sha}'    
         
         diff_headers = {
@@ -86,7 +88,6 @@ class GitHubClient(object):
             'Authorization': f'token {self.token}'
         }
         print(f'Diff url {diff_url}')
-        print(f'Before sha {self.before}')
         
         diff_request = requests.get(url=diff_url, headers=diff_headers)
         if diff_request.status_code == 200:
