@@ -87,6 +87,7 @@ class GitHubClient(object):
             'Accept': 'application/vnd.github.v3.diff',
             'Authorization': f'token {self.token}'
         }
+        # TODO remove debug log
         print(f'Diff url {diff_url}')
         
         diff_request = requests.get(url=diff_url, headers=diff_headers)
