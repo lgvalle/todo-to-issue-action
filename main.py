@@ -226,7 +226,7 @@ class GitHubClient(object):
                 projects_url = f'{self.base_url}orgs/{entity_name}/projects'
             else:
                 return
-
+# TODO 3
             # We need to use the project name to get its ID.
             projects_request = requests.get(url=projects_url, headers=projects_headers)
             if projects_request.status_code == 200:
