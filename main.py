@@ -70,12 +70,15 @@ class GitHubClient(object):
         """Get the last diff."""
         if self.before != '0000000000000000000000000000000000000000':
             # There is a valid before SHA to compare with
+            print("Case 1")
             diff_url = f'{self.repos_url}{self.repo}/compare/{self.before}...{self.sha}'
         elif len(self.commits) == 1:
             # There is only one commit
+            print("Case 2")
             diff_url = f'{self.repos_url}{self.repo}/commits/{self.sha}'
         else: 
             # There are several commits: compare with the oldest one
+            print("Case 3")
             oldest = sorted(self.commits, key=self.get_timestamp, reverse=True)
             diff_url = f'{self.repos_url}{self.repo}/compare/{oldest.id}...{self.sha}'    
         
