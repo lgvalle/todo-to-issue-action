@@ -63,7 +63,7 @@ class GitHubClient(object):
         # Retrieve the existing repo issues now so we can easily check them later.
         self._get_existing_issues()
 
-    def get_timestamp(commit):
+    def get_timestamp(self, commit):
         return commit.get('timestamp')
 
     def get_last_diff(self):
