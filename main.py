@@ -611,7 +611,6 @@ class TodoParser(object):
             projects = list(filter(None, projects.split(',')))
         return projects
 
-# TODO a comment number five
 if __name__ == "__main__":
     # Create a basic client for communicating with GitHub, automatically initialised with environment variables.
     client = GitHubClient()
